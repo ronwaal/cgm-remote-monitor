@@ -1,0 +1,37 @@
+# Render blueprint for a new Nightscout web service.
+# This file intentionally contains no secrets.
+# Enter MONGODB_URI and API_SECRET in the Render dashboard as environment variables.
+
+services:
+  - type: web
+    name: nightscout-garmin
+    env: docker
+    plan: starter
+    image:
+      url: nightscout/cgm-remote-monitor:latest
+    autoDeploy: false
+    envVars:
+      - key: HOSTNAME
+        value: 0.0.0.0
+      - key: PORT
+        value: "1337"
+      - key: NODE_ENV
+        value: production
+      - key: TZ
+        value: Europe/Amsterdam
+      - key: DISPLAY_UNITS
+        value: mmol/L
+      - key: TIME_FORMAT
+        value: "24"
+      - key: AUTH_DEFAULT_ROLES
+        value: denied
+      - key: ENABLE
+        value: careportal iob sage cage basal dbsize
+      - key: BG_TARGET_BOTTOM
+        value: "4.5"
+      - key: BG_TARGET_TOP
+        value: "13"
+      - key: MONGODB_URI
+        sync: false
+      - key: API_SECRET
+        sync: false
