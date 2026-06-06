@@ -11,6 +11,14 @@ my.env
 my.*.env
 *.pem
 
+# Local secrets and deployment credentials
+.env
+.env.*
+!.env.example
+*.secret
+*.secrets
+secrets/
+
 static/bower_components/
 .*.sw?
 .DS_Store
